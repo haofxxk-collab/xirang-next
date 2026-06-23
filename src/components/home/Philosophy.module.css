@@ -1,0 +1,70 @@
+.section {
+  background: var(--soil);
+  padding: 9rem 4rem;
+}
+
+.head { margin-bottom: 5rem; }
+
+.label {
+  font-size: 14px;
+  letter-spacing: 0.55em;
+  text-transform: uppercase;
+  color: var(--fog);
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  font-family: var(--serif);
+  font-size: clamp(34px, 4vw, 58px);
+  font-weight: 200;
+  color: var(--paper);
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+}
+
+.card {
+  padding: 4rem 3.5rem;
+  background: var(--soil2);
+  border-top: 1.5px solid transparent;
+  transition: border-color 0.4s;
+}
+
+.card:hover { border-top-color: var(--gold); }
+
+.char {
+  display: block;
+  font-family: var(--serif);
+  font-size: clamp(52px, 6vw, 80px);
+  color: rgba(184, 147, 90, 0.15);
+  font-weight: 200;
+  line-height: 1;
+  margin-bottom: 2.5rem;
+}
+
+.cardTitle {
+  font-family: var(--serif);
+  font-size: clamp(20px, 2vw, 26px);
+  color: var(--paper);
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.cardBody {
+  font-size: 17px;
+  line-height: 2.5;
+  color: var(--fog);
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 900px) {
+  .section { padding: 6rem 1.5rem; }
+  .grid { grid-template-columns: 1fr; }
+}

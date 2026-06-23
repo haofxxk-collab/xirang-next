@@ -1,0 +1,96 @@
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.6rem 4rem;
+  background: rgba(8, 8, 7, 0.97);
+  border-bottom: 0.5px solid rgba(170, 166, 157, 0.08);
+  backdrop-filter: blur(8px);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+}
+
+.vdiv {
+  display: block;
+  width: 0.5px;
+  height: 36px;
+  background: rgba(170, 166, 157, 0.18);
+}
+
+.logoText {
+  display: flex;
+  flex-direction: column;
+}
+
+.zh {
+  font-family: var(--serif);
+  font-size: 22px;
+  letter-spacing: 0.38em;
+  color: var(--paper);
+  font-weight: 300;
+}
+
+.en {
+  font-size: 11px;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: var(--fog);
+  margin-top: 2px;
+}
+
+.links {
+  display: flex;
+  gap: 3rem;
+  list-style: none;
+}
+
+.links a {
+  font-size: 15px;
+  letter-spacing: 0.22em;
+  text-decoration: none;
+  color: var(--mineral);
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+
+.links a:hover,
+.links a.active {
+  color: var(--paper);
+}
+
+.apply {
+  font-size: 13px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  border: 0.5px solid rgba(170, 166, 157, 0.3);
+  color: var(--mineral);
+  background: none;
+  padding: 0.65rem 1.6rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color 0.4s, color 0.4s;
+  font-family: var(--sans);
+}
+
+.apply:hover {
+  border-color: var(--paper);
+  color: var(--paper);
+}
+
+@media (max-width: 900px) {
+  .nav {
+    padding: 1.25rem 1.5rem;
+  }
+  .links,
+  .apply {
+    display: none;
+  }
+}

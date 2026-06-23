@@ -1,0 +1,22 @@
+import { createClient } from 'next-sanity'
+import imageUrlBuilder from '@sanity/image-url'
+import type { SanityImage } from '@/types'
+
+export const client = createClient({
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ?? 'placeholder',
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET ?? 'production',
+  apiVersion: '2024-01-01',
+  useCdn: process.env.NODE_ENV === 'production',
+  token: process.env.SANITY_API_TOKEN,
+})
+
+const builder = imageUrlBuilder(client)
+
+export function urlFor(source: SanityImage) {
+  return builder.image(source)
+}
+
+export function urlForSize(source: SanityImage, width: number, height?: number) {
+  const b = builder.image(source).width(width).auto('format').quality(85)
+  return height ? b.height(height).fit('crop').url() : b.url()
+}

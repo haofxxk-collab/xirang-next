@@ -1,0 +1,43 @@
+.section { background: var(--soil); padding: 10rem 0; }
+
+.inner {
+  max-width: 1200px; margin: 0 auto; padding: 0 4rem;
+  display: grid; grid-template-columns: 1fr 1.5fr; gap: 8rem; align-items: center;
+}
+
+.char {
+  font-family: var(--serif);
+  font-size: clamp(120px, 16vw, 220px);
+  font-weight: 200; color: rgba(170,166,157,0.08);
+  line-height: 1; margin-bottom: 2rem;
+}
+
+.label {
+  font-size: 14px; letter-spacing: 0.5em; text-transform: uppercase;
+  color: var(--fog); margin-bottom: 1.5rem; opacity: 0.6;
+}
+
+.title {
+  font-family: var(--serif);
+  font-size: clamp(28px, 3.5vw, 48px);
+  font-weight: 200; color: var(--paper); letter-spacing: 0.1em; line-height: 1.6;
+}
+
+.body { font-size: 20px; line-height: 2.8; color: var(--fog); letter-spacing: 0.05em; }
+.body p { margin-bottom: 2.2rem; }
+.body strong { color: var(--paper); font-weight: 300; }
+
+.divider { width: 40px; height: 0.5px; background: var(--gold); opacity: 0.5; margin: 3rem 0; }
+
+.classical {
+  font-family: var(--serif);
+  font-size: clamp(16px, 1.8vw, 22px);
+  color: var(--mineral); font-weight: 200; letter-spacing: 0.12em;
+  line-height: 2; font-style: normal;
+}
+.classical cite { font-size: 14px; color: var(--fog); letter-spacing: 0.3em; font-style: normal; }
+
+@media (max-width: 900px) {
+  .inner { grid-template-columns: 1fr; gap: 3rem; padding: 0 1.5rem; }
+  .section { padding: 6rem 0; }
+}

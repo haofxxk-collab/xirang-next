@@ -1,0 +1,19 @@
+.section {
+  background: var(--soil); padding: 10rem 4rem;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start;
+  max-width: 100%;
+}
+.label { font-size: 14px; letter-spacing: 0.5em; text-transform: uppercase; color: var(--fog); margin-bottom: 2rem; }
+.title { font-family: var(--serif); font-size: clamp(32px, 4vw, 58px); font-weight: 200; color: var(--paper); letter-spacing: 0.1em; line-height: 1.6; margin-bottom: 3rem; }
+.body { font-size: 19px; line-height: 2.6; color: var(--fog); letter-spacing: 0.04em; margin-bottom: 3.5rem; }
+.btns { display: flex; flex-direction: column; gap: 1rem; align-items: flex-start; }
+.btnFill { font-size: 14px; letter-spacing: 0.42em; text-transform: uppercase; background: var(--paper); color: var(--ink); padding: 1.2rem 3.2rem; text-decoration: none; transition: opacity 0.3s; font-family: var(--sans); font-weight: 300; }
+.btnFill:hover { opacity: 0.82; }
+.btnOutline { font-size: 14px; letter-spacing: 0.42em; text-transform: uppercase; background: transparent; color: var(--mineral); border: 0.5px solid rgba(170,166,157,0.28); padding: 1.2rem 3.2rem; text-decoration: none; transition: all 0.4s; font-family: var(--sans); font-weight: 300; }
+.btnOutline:hover { border-color: var(--paper); color: var(--paper); }
+.right { display: flex; flex-direction: column; gap: 2px; }
+.item { padding: 2.8rem 3rem; background: rgba(240,237,229,0.02); border: 0.5px solid rgba(170,166,157,0.07); }
+.itemLabel { font-size: 11px; letter-spacing: 0.45em; text-transform: uppercase; color: var(--fog); margin-bottom: 0.8rem; }
+.itemVal { font-family: var(--serif); font-size: 20px; color: var(--paper); font-weight: 200; letter-spacing: 0.08em; }
+.itemSub { font-size: 14px; color: var(--fog); margin-top: 0.4rem; letter-spacing: 0.05em; }
+@media (max-width: 900px) { .section { grid-template-columns: 1fr; padding: 6rem 1.5rem; } }

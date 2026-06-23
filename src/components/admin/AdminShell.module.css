@@ -1,0 +1,115 @@
+.shell {
+  display: flex;
+  min-height: 100vh;
+  background: #0f0e0c;
+  color: #f0ede5;
+  font-family: 'Noto Sans TC', sans-serif;
+}
+
+.sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  background: #1a1612;
+  border-right: 1px solid #2a2520;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+.logo {
+  padding: 28px 24px 24px;
+  border-bottom: 1px solid #2a2520;
+}
+
+.logoTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #b8935a;
+  letter-spacing: 0.1em;
+}
+
+.logoSub {
+  font-size: 0.7rem;
+  color: #6e6860;
+  margin-top: 2px;
+  letter-spacing: 0.05em;
+}
+
+.nav {
+  flex: 1;
+  padding: 16px 0;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  color: #aaa69d;
+  text-decoration: none;
+  font-size: 0.88rem;
+  transition: background 0.15s, color 0.15s;
+  cursor: pointer;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+}
+
+.navItem:hover {
+  background: #221e19;
+  color: #f0ede5;
+}
+
+.navItem.active {
+  background: #221e19;
+  color: #b8935a;
+  border-left: 2px solid #b8935a;
+}
+
+.navIcon { font-size: 1rem; width: 20px; }
+
+.navDivider {
+  height: 1px;
+  background: #2a2520;
+  margin: 8px 24px;
+}
+
+.logoutBtn {
+  padding: 20px 24px;
+  border-top: 1px solid #2a2520;
+}
+
+.main {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.topbar {
+  height: 56px;
+  background: #1a1612;
+  border-bottom: 1px solid #2a2520;
+  display: flex;
+  align-items: center;
+  padding: 0 32px;
+  gap: 12px;
+}
+
+.topbarTitle {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #f0ede5;
+}
+
+.topbarBadge {
+  font-size: 0.72rem;
+  background: #b8935a22;
+  color: #b8935a;
+  border: 1px solid #b8935a44;
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+
+.content {
+  padding: 32px;
+}

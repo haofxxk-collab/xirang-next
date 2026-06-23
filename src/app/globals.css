@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200;300;400;500&family=Noto+Sans+TC:wght@200;300;400&family=EB+Garamond:ital,wght@0,400;1,400&display=swap');
+
+:root {
+  --rock: #080807;
+  --soil: #1A1612;
+  --soil2: #221E19;
+  --paper: #F0EDE5;
+  --mineral: #AAA69D;
+  --fog: #6E6860;
+  --ink: #050504;
+  --gold: #B8935A;
+  --red: #A31F1F;
+  --serif: 'Noto Serif TC', 'EB Garamond', serif;
+  --sans: 'Noto Sans TC', sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--rock);
+  color: var(--paper);
+  font-family: var(--sans);
+  font-weight: 300;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Reveal animation utility */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-l {
+  opacity: 0;
+  transform: translateX(-24px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+.reveal-l.in {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

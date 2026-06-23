@@ -1,0 +1,76 @@
+.page {
+  min-height: 100vh;
+  background: #0f0e0c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  width: 360px;
+  background: #1a1612;
+  border: 1px solid #2a2520;
+  border-radius: 8px;
+  padding: 48px 40px;
+  text-align: center;
+}
+
+.logo {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 2rem;
+  color: #b8935a;
+  letter-spacing: 0.2em;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 0.8rem;
+  color: #6e6860;
+  letter-spacing: 0.15em;
+  margin-bottom: 40px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.input {
+  width: 100%;
+  padding: 12px 16px;
+  background: #0f0e0c;
+  border: 1px solid #2a2520;
+  border-radius: 4px;
+  color: #f0ede5;
+  font-size: 0.95rem;
+  font-family: inherit;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.input:focus {
+  border-color: #b8935a;
+}
+
+.btn {
+  padding: 13px;
+  background: #b8935a;
+  color: #080807;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.btn:hover { opacity: 0.85; }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.error {
+  font-size: 0.82rem;
+  color: #e07070;
+  margin: 0;
+}

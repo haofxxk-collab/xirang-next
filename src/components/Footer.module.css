@@ -1,0 +1,62 @@
+.footer {
+  background: var(--ink);
+  border-top: 0.5px solid rgba(170, 166, 157, 0.07);
+  padding: 3rem 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logoText {
+  font-family: var(--serif);
+  font-size: 18px;
+  color: var(--paper);
+  letter-spacing: 0.32em;
+  font-weight: 300;
+}
+
+.links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.links a {
+  font-size: 13px;
+  color: var(--fog);
+  letter-spacing: 0.22em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+
+.links a:hover {
+  color: var(--paper);
+}
+
+.copy {
+  font-size: 12px;
+  color: rgba(110, 104, 96, 0.3);
+  letter-spacing: 0.2em;
+}
+
+@media (max-width: 900px) {
+  .footer {
+    flex-direction: column;
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+  }
+  .links {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+}

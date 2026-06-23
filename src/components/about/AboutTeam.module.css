@@ -1,0 +1,12 @@
+.section { background: var(--soil2); padding: 10rem 4rem; }
+.head { margin-bottom: 6rem; }
+.label { font-size: 14px; letter-spacing: 0.5em; text-transform: uppercase; color: var(--fog); margin-bottom: 1.5rem; }
+.title { font-family: var(--serif); font-size: clamp(34px, 4.5vw, 62px); font-weight: 200; color: var(--paper); letter-spacing: 0.08em; line-height: 1.4; }
+.grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; }
+.card { background: var(--soil); padding: 3rem 2.5rem; }
+.portrait { position: relative; width: 72px; height: 72px; border-radius: 50%; overflow: hidden; margin-bottom: 2rem; border: 0.5px solid rgba(170,166,157,0.12); }
+.portraitImg { object-fit: cover; object-position: top; filter: grayscale(20%); }
+.name { font-family: var(--serif); font-size: 20px; color: var(--paper); font-weight: 300; letter-spacing: 0.12em; margin-bottom: 0.4rem; }
+.role { font-size: 12px; letter-spacing: 0.38em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+.bio { font-size: 15px; line-height: 2.2; color: var(--fog); letter-spacing: 0.03em; }
+@media (max-width: 900px) { .section { padding: 6rem 1.5rem; } .grid { grid-template-columns: 1fr 1fr; } }

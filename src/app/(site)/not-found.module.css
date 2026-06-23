@@ -1,0 +1,11 @@
+.section {
+  min-height: 100vh; background: var(--rock);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 4rem 2rem;
+}
+.logo { opacity: 0.3; margin-bottom: 3rem; }
+.code { font-family: var(--serif); font-size: clamp(80px, 12vw, 160px); font-weight: 200; color: rgba(170,166,157,0.08); line-height: 1; margin-bottom: -0.2em; }
+.title { font-family: var(--serif); font-size: clamp(32px, 4vw, 56px); font-weight: 200; color: var(--paper); letter-spacing: 0.1em; line-height: 1.5; margin-bottom: 1.5rem; }
+.body { font-size: 18px; color: var(--fog); letter-spacing: 0.08em; line-height: 2; margin-bottom: 3.5rem; }
+.back { font-size: 13px; letter-spacing: 0.45em; text-transform: uppercase; color: var(--mineral); text-decoration: none; border: 0.5px solid rgba(170,166,157,0.25); padding: 1rem 2.5rem; transition: all 0.4s; }
+.back:hover { border-color: var(--paper); color: var(--paper); }

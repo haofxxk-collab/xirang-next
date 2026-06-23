@@ -1,0 +1,139 @@
+.section {
+  background: var(--soil);
+  padding: 9rem 4rem;
+}
+
+.inner {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 7rem;
+  align-items: start;
+}
+
+.specs {
+  position: sticky;
+  top: 10rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.specGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 0.5px solid rgba(170,166,157,0.08);
+  margin-bottom: 2px;
+}
+
+.specItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1.4rem 1.8rem;
+  border-bottom: 0.5px solid rgba(170,166,157,0.06);
+}
+.specItem:last-child { border-bottom: none; }
+
+.specLabel {
+  font-size: 11px;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--fog);
+}
+
+.specVal {
+  font-family: var(--serif);
+  font-size: 18px;
+  color: var(--paper);
+  font-weight: 200;
+  letter-spacing: 0.06em;
+}
+
+.artistCard {
+  background: rgba(240,237,229,0.02);
+  border: 0.5px solid rgba(170,166,157,0.08);
+  margin-bottom: 2px;
+}
+
+.artistInner {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem 1.8rem;
+  text-decoration: none;
+}
+
+.artistPortrait {
+  object-fit: cover;
+  object-position: top;
+  filter: grayscale(15%);
+}
+
+.artistLabel {
+  font-size: 11px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--fog);
+  margin-bottom: 0.3rem;
+}
+
+.artistName {
+  font-family: var(--serif);
+  font-size: 20px;
+  color: var(--paper);
+  font-weight: 200;
+  letter-spacing: 0.12em;
+}
+
+.inquireBtn {
+  display: block;
+  font-size: 14px;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  background: var(--paper);
+  color: var(--ink);
+  padding: 1.2rem;
+  text-align: center;
+  text-decoration: none;
+  transition: opacity 0.3s;
+  font-family: var(--sans);
+  font-weight: 300;
+}
+.inquireBtn:hover { opacity: 0.85; }
+
+.storyLabel {
+  font-size: 13px;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--fog);
+  margin-bottom: 2rem;
+}
+
+.storyTitle {
+  font-family: var(--serif);
+  font-size: clamp(28px, 3.5vw, 48px);
+  font-weight: 200;
+  color: var(--paper);
+  letter-spacing: 0.1em;
+  line-height: 1.4;
+  margin-bottom: 3.5rem;
+}
+
+.storyBody {
+  font-size: 19px;
+  line-height: 2.8;
+  color: var(--fog);
+  letter-spacing: 0.04em;
+}
+
+.storyBody p { margin-bottom: 1.5rem; }
+.storyBody strong { color: var(--paper); font-weight: 300; }
+
+@media (max-width: 1100px) {
+  .inner { grid-template-columns: 1fr; padding: 0; gap: 4rem; }
+  .specs { position: static; }
+  .section { padding: 6rem 1.5rem; }
+}

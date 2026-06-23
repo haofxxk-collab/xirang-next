@@ -1,0 +1,36 @@
+.past { background: var(--soil2); padding: 9rem 4rem; }
+.upcoming { background: var(--soil); padding: 9rem 4rem; }
+.head { margin-bottom: 5rem; }
+.label { font-size: 14px; letter-spacing: 0.5em; text-transform: uppercase; color: var(--fog); margin-bottom: 1.5rem; }
+.title { font-family: var(--serif); font-size: clamp(34px, 4.5vw, 62px); font-weight: 200; color: var(--paper); letter-spacing: 0.08em; line-height: 1.4; }
+
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; }
+.card { display: block; text-decoration: none; background: var(--soil); display: grid; grid-template-columns: 1fr 1fr; }
+.cardImg { position: relative; aspect-ratio: 4/3; overflow: hidden; }
+.img { object-fit: cover; transition: transform 0.6s ease; filter: grayscale(15%); }
+.card:hover .img { transform: scale(1.03); }
+.cardInfo { padding: 3rem; display: flex; flex-direction: column; justify-content: space-between; position: relative; }
+.cardDate { font-size: 11px; letter-spacing: 0.45em; color: var(--fog); margin-bottom: 1rem; }
+.cardTitle { font-family: var(--serif); font-size: clamp(18px, 2vw, 26px); color: var(--paper); font-weight: 300; letter-spacing: 0.08em; line-height: 1.5; margin-bottom: 0.8rem; }
+.cardArtists { font-size: 14px; color: var(--fog); letter-spacing: 0.06em; }
+.cardArrow { font-size: 16px; color: var(--fog); align-self: flex-end; transition: color 0.3s, transform 0.3s; }
+.card:hover .cardArrow { color: var(--paper); transform: translateX(4px); }
+
+.upcomingList { display: flex; flex-direction: column; gap: 2px; }
+.upcomingItem {
+  display: grid; grid-template-columns: 120px 1fr auto;
+  align-items: center; gap: 3rem;
+  padding: 2.5rem 0; border-bottom: 0.5px solid rgba(170,166,157,0.06);
+}
+.upDate { font-family: var(--serif); font-size: 18px; color: rgba(184,147,90,0.4); font-weight: 200; letter-spacing: 0.08em; }
+.upTitle { font-family: var(--serif); font-size: clamp(18px, 2vw, 24px); color: var(--paper); font-weight: 300; letter-spacing: 0.08em; margin-bottom: 0.3rem; }
+.upArtists { font-size: 14px; color: var(--fog); letter-spacing: 0.06em; }
+.upTag { font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); border: 0.5px solid rgba(184,147,90,0.3); padding: 0.4rem 1rem; white-space: nowrap; }
+
+@media (max-width: 900px) {
+  .past, .upcoming { padding: 6rem 1.5rem; }
+  .grid { grid-template-columns: 1fr; }
+  .card { grid-template-columns: 1fr; }
+  .upcomingItem { grid-template-columns: auto 1fr; }
+  .upTag { display: none; }
+}

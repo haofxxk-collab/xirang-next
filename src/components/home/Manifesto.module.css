@@ -1,0 +1,51 @@
+.manifesto {
+  background: var(--ink);
+  padding: 12rem 4rem;
+  text-align: center;
+}
+
+.lines {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 5rem;
+}
+
+.line {
+  font-family: var(--serif);
+  font-size: clamp(24px, 3.5vw, 54px);
+  font-weight: 200;
+  color: var(--paper);
+  letter-spacing: 0.1em;
+  line-height: 2;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.line.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dim { color: rgba(170, 166, 157, 0.2); }
+.accent { color: var(--gold); }
+
+.divider {
+  width: 40px;
+  height: 0.5px;
+  background: rgba(184, 147, 90, 0.4);
+  margin: 0 auto 2.5rem;
+}
+
+.sub {
+  font-size: 13px;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--fog);
+}
+
+@media (max-width: 900px) {
+  .manifesto { padding: 7rem 1.5rem; }
+}

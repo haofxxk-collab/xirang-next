@@ -1,0 +1,126 @@
+.section {
+  position: relative;
+  height: 85vh;
+  min-height: 560px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.imgWrap {
+  position: absolute;
+  inset: 0;
+}
+
+.img {
+  object-fit: cover;
+  object-position: center;
+  filter: grayscale(15%);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(5, 5, 4, 0.95) 0%,
+    rgba(5, 5, 4, 0.5) 40%,
+    rgba(5, 5, 4, 0.1) 100%
+  );
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  padding: 5rem 4rem;
+  width: 100%;
+  max-width: 800px;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.tag {
+  font-size: 11px;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 0.5px solid rgba(184, 147, 90, 0.4);
+  padding: 0.35rem 1rem;
+}
+
+.type {
+  font-size: 12px;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--fog);
+}
+
+.title {
+  font-family: var(--serif);
+  font-size: clamp(32px, 4.5vw, 64px);
+  font-weight: 200;
+  color: var(--paper);
+  letter-spacing: 0.1em;
+  line-height: 1.4;
+  margin-bottom: 1.5rem;
+}
+
+.body {
+  font-size: 17px;
+  line-height: 2.4;
+  color: var(--mineral);
+  letter-spacing: 0.04em;
+  margin-bottom: 2.5rem;
+  max-width: 520px;
+}
+
+.artists {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-bottom: 3rem;
+}
+
+.artistChip {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.5rem 1rem;
+  background: rgba(240, 237, 229, 0.06);
+  border: 0.5px solid rgba(170, 166, 157, 0.15);
+  font-size: 14px;
+  color: var(--mineral);
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  transition: border-color 0.3s, color 0.3s;
+}
+
+.artistChip:hover { border-color: rgba(170, 166, 157, 0.4); color: var(--paper); }
+
+.chipImg {
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.cta {
+  font-size: 14px;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: var(--paper);
+  text-decoration: none;
+  border-bottom: 0.5px solid rgba(240, 237, 229, 0.3);
+  padding-bottom: 0.3rem;
+  transition: border-color 0.3s;
+}
+
+.cta:hover { border-color: var(--paper); }
+
+@media (max-width: 900px) {
+  .content { padding: 3rem 1.5rem; }
+  .section { height: auto; min-height: 70vh; }
+}

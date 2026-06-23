@@ -1,0 +1,6 @@
+.section { background: var(--rock); padding: 10rem 4rem; border-top: 0.5px solid rgba(170,166,157,0.06); }
+.grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; max-width: 1400px; margin: 0 auto; }
+.card { padding: 4rem 3rem; background: var(--soil2); text-align: center; }
+.val { font-family: var(--serif); font-size: clamp(48px, 6vw, 80px); font-weight: 200; color: var(--paper); letter-spacing: 0.05em; line-height: 1; margin-bottom: 1.2rem; }
+.label { font-size: 13px; letter-spacing: 0.42em; text-transform: uppercase; color: var(--fog); }
+@media (max-width: 900px) { .section { padding: 6rem 1.5rem; } .grid { grid-template-columns: 1fr 1fr; } }
