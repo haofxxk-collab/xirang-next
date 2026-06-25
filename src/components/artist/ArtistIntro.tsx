@@ -2,10 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import { Ma_Shan_Zheng } from 'next/font/google'
 import styles from './ArtistIntro.module.css'
-
-const maShanZheng = Ma_Shan_Zheng({ weight: '400', subsets: ['chinese-traditional'], display: 'swap' })
 
 interface Props {
   name: string
@@ -51,7 +48,7 @@ export function ArtistIntro({ name, nameEn }: Props) {
           數位展館
         </p>
         <p className={styles.present}>呈　獻</p>
-        <h1 className={`${styles.name} ${maShanZheng.className}`}>{name}</h1>
+        <h1 className={styles.name}>{name}</h1>
         {nameEn && <p className={styles.nameEn}>{nameEn.toUpperCase()}</p>}
       </div>
 

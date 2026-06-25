@@ -34,6 +34,9 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
   const dimOpacity = (settings.dimTextOpacity ?? 50) / 100
   return (
     <>
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
       <style>{`
         :root {
           --dim-opacity: ${dimOpacity};
