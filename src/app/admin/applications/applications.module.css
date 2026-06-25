@@ -1,4 +1,4 @@
-.filterRow {
+﻿.filterRow {
   display: flex;
   gap: 8px;
   margin-bottom: 24px;
@@ -184,3 +184,42 @@
 .btnReject  { background: #9e5a5a22; border-color: #9e5a5a; color: #e07070; }
 
 .btnApprove:hover, .btnReview:hover, .btnReject:hover { opacity: 0.75; }
+
+.topBar { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 24px; flex-wrap: wrap; }
+.topBar .filterRow { margin-bottom: 0; flex: 1; }
+
+.bulkBar {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  padding: 8px 14px; background: #1e1a15; border: 1px solid #3a3530;
+  border-radius: 20px; font-size: 0.82rem; color: #aaa69d;
+}
+.bulkWarning { color: #e07070; }
+.btnDangerSm {
+  padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-family: inherit;
+  cursor: pointer; border: 1px solid #5a2020; background: transparent; color: #e07070; transition: all 0.15s;
+}
+.btnDangerSm:hover { background: #5a202033; }
+.btnDangerSm:disabled { opacity: 0.4; cursor: not-allowed; }
+.btnCancelSm {
+  padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-family: inherit;
+  cursor: pointer; border: 1px solid #2a2520; background: transparent; color: #6e6860;
+}
+.btnCancelSm:hover { color: #aaa69d; border-color: #4a4640; }
+.checkbox { width: 14px; height: 14px; accent-color: #b8935a; cursor: pointer; flex-shrink: 0; }
+
+.card { display: flex; align-items: stretch; position: relative; }
+.cardCheck { display: flex; align-items: center; padding: 16px 12px 16px 0; flex-shrink: 0; }
+.cardBody { flex: 1; cursor: pointer; }
+.cardSelected { outline: 1px solid #b8935a44; border-radius: 8px; background: #1e1a1588 !important; }
+.cardDeleteBtn {
+  position: absolute; top: 12px; right: 12px;
+  background: none; border: none; color: #4a4640; font-size: 12px;
+  cursor: pointer; padding: 4px 6px; border-radius: 3px; transition: color 0.15s, background 0.15s;
+  line-height: 1;
+}
+.cardDeleteBtn:hover { color: #e07070; background: #5a202022; }
+
+.selectAll {
+  display: flex; align-items: center; gap: 8px; margin-top: 12px;
+  font-size: 0.8rem; color: #6e6860; cursor: pointer;
+}

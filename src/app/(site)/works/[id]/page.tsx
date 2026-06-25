@@ -25,17 +25,30 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export const revalidate = 3600
+export const revalidate = false
 
 export default async function WorkPage({ params }: Props) {
   const work = await getArtworkBySlug(params.id)
   if (!work) notFound()
 
+  const hasWorkProcess = work.workProcess1Title && work.workProcess2Title && work.workProcess3Title
+
   return (
     <>
       <WorkViewer work={work} />
       <WorkDetail work={work} />
-      <WorkProcess />
+      {hasWorkProcess && (
+        <WorkProcess
+          label={work.workProcessLabel ?? '創作過程'}
+          title={work.workProcessTitle ?? '從靈感到完成'}
+          step1Title={work.workProcess1Title!}
+          step1Body={work.workProcess1Body ?? ''}
+          step2Title={work.workProcess2Title!}
+          step2Body={work.workProcess2Body ?? ''}
+          step3Title={work.workProcess3Title!}
+          step3Body={work.workProcess3Body ?? ''}
+        />
+      )}
       <RelatedWorks works={work.relatedWorks ?? []} artist={work.artist} />
     </>
   )

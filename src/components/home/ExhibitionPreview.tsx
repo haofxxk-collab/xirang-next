@@ -4,11 +4,22 @@ import type { Exhibition } from '@/types'
 import { urlForSize } from '@/lib/sanity'
 import styles from './ExhibitionPreview.module.css'
 
-interface Props { exhibition: Exhibition | null }
+interface Props {
+  exhibition: Exhibition | null
+  tag: string
+  cta: string
+  emptyTitle: string
+  emptyBody: string
+}
 
-export function ExhibitionPreview({ exhibition }: Props) {
-  if (!exhibition) return null
-
+export function ExhibitionPreview({ exhibition, tag, cta, emptyTitle, emptyBody }: Props) {
+  if (!exhibition) return (
+    <section style={{ padding: '6rem 4rem', textAlign: 'center' }}>
+      <p style={{ fontSize: '0.78rem', letterSpacing: '0.3em', color: 'var(--gold)', marginBottom: '1.2rem' }}>{tag}</p>
+      <h2 style={{ fontSize: '1.6rem', letterSpacing: '0.05em', marginBottom: '1rem' }}>{emptyTitle}</h2>
+      <p style={{ color: '#6e6860', letterSpacing: '0.1em', lineHeight: 2 }}>{emptyBody.replace(/\n/g, ' ')}</p>
+    </section>
+  )
   const coverUrl = exhibition.coverImage
     ? urlForSize(exhibition.coverImage, 1600, 900)
     : 'https://images.unsplash.com/photo-1580418827493-f2b22c0a76cb?w=1600&q=85&fit=crop'
@@ -28,7 +39,7 @@ export function ExhibitionPreview({ exhibition }: Props) {
 
       <div className={styles.content}>
         <div className={styles.meta}>
-          <span className={styles.tag}>當期策展</span>
+          <span className={styles.tag}>{tag}</span>
           <span className={styles.type}>{typeLabel(exhibition.type)}</span>
         </div>
         <h2 className={`reveal ${styles.title}`}>{exhibition.title}</h2>
@@ -52,7 +63,7 @@ export function ExhibitionPreview({ exhibition }: Props) {
         </div>
 
         <Link href={`/exhibitions/${exhibition.slug.current}`} className={`reveal ${styles.cta}`}>
-          進入展覽 →
+          {cta}
         </Link>
       </div>
     </section>

@@ -20,3 +20,32 @@
 .cta { font-size: 14px; letter-spacing: 0.45em; text-transform: uppercase; color: var(--paper); text-decoration: none; border-bottom: 0.5px solid rgba(240,237,229,0.3); padding-bottom: 0.3rem; display: inline-block; transition: border-color 0.3s; }
 .cta:hover { border-color: var(--paper); }
 @media (max-width: 900px) { .content { padding: 3rem 1.5rem; } .section { height: auto; min-height: 70vh; } }
+
+.empty {
+  padding: 8rem 4rem;
+  text-align: center;
+  background: var(--soil);
+  border-top: 1px solid rgba(42,37,32,0.5);
+}
+.emptyInner { max-width: 480px; margin: 0 auto; }
+.emptyLabel {
+  font-size: 0.72rem;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+.emptyTitle {
+  font-family: var(--serif);
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--paper);
+  letter-spacing: 0.15em;
+  margin-bottom: 1.5rem;
+}
+.emptyBody {
+  font-size: 0.95rem;
+  color: #6e6860;
+  line-height: 2;
+  letter-spacing: 0.06em;
+}

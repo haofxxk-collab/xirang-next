@@ -1,0 +1,23 @@
+import styles from './loading.module.css'
+
+export default function Loading() {
+  return (
+    <div className={styles.wrap}>
+      <div className={styles.header}>
+        <div className={styles.skLabel} />
+        <div className={styles.skTitle} />
+      </div>
+      <div className={styles.grid}>
+        {Array.from({ length: 8 }).map((_, i) => (
+          <div key={i} className={styles.card} style={{ animationDelay: `${i * 0.07}s` }}>
+            <div className={styles.cardImg} />
+            <div className={styles.cardInfo}>
+              <div className={styles.skLine} style={{ width: '60%' }} />
+              <div className={styles.skLine} style={{ width: '40%', opacity: 0.5 }} />
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}

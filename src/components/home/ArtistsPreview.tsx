@@ -4,19 +4,24 @@ import type { Artist } from '@/types'
 import { urlForSize } from '@/lib/sanity'
 import styles from './ArtistsPreview.module.css'
 
-interface Props { artists: Artist[] }
+interface Props {
+  artists: Artist[]
+  label: string
+  title: string
+  more: string
+}
 
-export function ArtistsPreview({ artists }: Props) {
+export function ArtistsPreview({ artists, label, title, more }: Props) {
+  const [titleLine1, titleLine2] = title.split('\n')
+  if (!artists.length) return null
   return (
     <section className={styles.section}>
       <div className={styles.head}>
         <div>
-          <p className={`reveal ${styles.label}`}>館內藝術家</p>
-          <h2 className={`reveal ${styles.title}`}>每一位，<br />都是一段歲月。</h2>
+          <p className={`reveal ${styles.label}`}>{label}</p>
+          <h2 className={`reveal ${styles.title}`}>{titleLine1}<br />{titleLine2}</h2>
         </div>
-        <Link href="/artists" className={`reveal ${styles.more}`}>
-          瀏覽所有藝術家 →
-        </Link>
+        <Link href="/artists" className={`reveal ${styles.more}`}>{more}</Link>
       </div>
 
       <div className={styles.grid}>

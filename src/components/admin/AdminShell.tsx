@@ -8,7 +8,9 @@ const navItems = [
   { href: '/admin/dashboard',    icon: '◈', label: '總覽' },
   { href: '/admin/artists',      icon: '人', label: '藝術家' },
   { href: '/admin/artworks',     icon: '畫', label: '作品典藏' },
+  { href: '/admin/exhibitions',  icon: '展', label: '策展管理' },
   { href: '/admin/applications', icon: '申', label: '申請審核' },
+  { href: '/admin/settings',     icon: '字', label: '網站文字' },
 ]
 
 export default function AdminShell({

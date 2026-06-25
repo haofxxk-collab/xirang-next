@@ -1,20 +1,26 @@
-import type { Metadata } from 'next'
-import { getAllExhibitions, getCurrentExhibition } from '@/lib/queries'
+﻿import type { Metadata } from 'next'
+import { getAllExhibitions, getCurrentExhibition, getSiteSettings } from '@/lib/queries'
 import { ExhibitionHeader } from '@/components/exhibition/ExhibitionHeader'
 import { CurrentExhibition } from '@/components/exhibition/CurrentExhibition'
 import { PastExhibitions } from '@/components/exhibition/PastExhibitions'
 
-export const metadata: Metadata = {
-  title: '當期策展',
-  description: '息壤策展：深耕創作數十年的亞洲藝術家，在這裡被好好呈現。',
+export const revalidate = false
+
+export async function generateMetadata(): Promise<Metadata> {
+  const s = await getSiteSettings()
+  return {
+    title: s.seoExhibitionsTitle,
+    description: s.seoExhibitionsDescription,
+    openGraph: { title: s.seoExhibitionsTitle, description: s.seoExhibitionsDescription },
+    twitter: { title: s.seoExhibitionsTitle, description: s.seoExhibitionsDescription },
+  }
 }
 
-export const revalidate = 3600
-
 export default async function ExhibitionsPage() {
-  const [all, current] = await Promise.all([
+  const [all, current, settings] = await Promise.all([
     getAllExhibitions(),
     getCurrentExhibition(),
+    getSiteSettings(),
   ])
 
   const past = all.filter((e) => e.status === 'past')
@@ -22,9 +28,28 @@ export default async function ExhibitionsPage() {
 
   return (
     <>
-      <ExhibitionHeader />
-      <CurrentExhibition exhibition={current} />
-      <PastExhibitions exhibitions={past} upcoming={upcoming} />
+      <ExhibitionHeader
+        label={settings.exhibitionsLabel}
+        title={settings.exhibitionsTitle}
+        body={settings.exhibitionsBody}
+      />
+      <CurrentExhibition
+        exhibition={current}
+        currentLabel={settings.exhibitionCurrentLabel}
+        artistsLabel={settings.exhibitionArtistsLabel}
+        cta={settings.exhibitionCta}
+        emptyTitle={settings.exhibitionEmptyTitle}
+        emptyBody={settings.exhibitionEmptyBody}
+      />
+      <PastExhibitions
+        exhibitions={past}
+        upcoming={upcoming}
+        pastLabel={settings.exhibitionPastLabel}
+        pastTitle={settings.exhibitionPastTitle}
+        upcomingLabel={settings.exhibitionUpcomingLabel}
+        upcomingTitle={settings.exhibitionUpcomingTitle}
+        emptyMsg={settings.exhibitionEmptyRecordMsg}
+      />
     </>
   )
 }

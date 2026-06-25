@@ -1,35 +1,50 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
-import { getAllArtworks } from '@/lib/queries'
+import { getAllArtworks, getSiteSettings } from '@/lib/queries'
 import { urlForSize } from '@/lib/sanity'
 import styles from './works.module.css'
 
-export const metadata: Metadata = {
-  title: '典藏',
-  description: '瀏覽息壤館內所有典藏作品，每件作品背後都有一段深厚的創作故事。',
+export const revalidate = false
+
+export async function generateMetadata(): Promise<Metadata> {
+  const s = await getSiteSettings()
+  return {
+    title: s.seoWorksTitle,
+    description: s.seoWorksDescription,
+    openGraph: { title: s.seoWorksTitle, description: s.seoWorksDescription },
+    twitter: { title: s.seoWorksTitle, description: s.seoWorksDescription },
+  }
 }
 
-export const revalidate = 3600
-
 export default async function WorksPage() {
-  const works = await getAllArtworks()
+  const [works, settings] = await Promise.all([getAllArtworks(), getSiteSettings()])
+
+  const fullTitle = settings.worksPageTitleFull.replace('{count}', String(works.length))
+  const [fullLine1, fullLine2] = fullTitle.split('，')
+  const [emptyLine1, emptyLine2] = settings.worksPageTitleEmpty.split('，')
 
   return (
     <>
       <section className={styles.header}>
-        <div className={styles.bgChar} aria-hidden>藏</div>
+        <div className={styles.bgChar} aria-hidden>{settings.worksPageBgChar}</div>
         <div className={styles.inner}>
-          <p className={`reveal ${styles.label}`}>典藏</p>
+          <p className={`reveal ${styles.label}`}>{settings.worksPageLabel}</p>
           <h1 className={`reveal ${styles.title}`}>
-            {works.length} 件典藏，<br />
-            <em>每件都有分量。</em>
+            {works.length > 0
+              ? <>{fullLine1}，<br /><em>{fullLine2}</em></>
+              : <>{emptyLine1}，<br /><em>{emptyLine2}</em></>}
           </h1>
         </div>
       </section>
 
       <section className={styles.grid}>
         <div className={styles.gridInner}>
+          {!works.length && (
+            <p style={{ gridColumn: '1/-1', padding: '6rem 0', textAlign: 'center', color: '#6e6860', letterSpacing: '0.1em' }}>
+              {settings.worksPageEmpty}
+            </p>
+          )}
           {works.map((work, i) => {
             const img = work.images?.[0]
             const imgUrl = img

@@ -7,6 +7,8 @@ import styles from './ArtistBio.module.css'
 interface Props { artist: Artist }
 
 export function ArtistBio({ artist }: Props) {
+  if (!artist.bio && !(artist.timeline?.length > 0)) return null
+
   const portraitUrl = artist.portrait
     ? urlForSize(artist.portrait, 560, 700)
     : 'https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=560&q=80&fit=crop&crop=face'

@@ -20,9 +20,13 @@ const MEDIA_FILTERS = [
 interface Props {
   artists: Artist[]
   featured: Artist | null
+  label: string
+  body: string
+  featuredLabel: string
+  featuredCta: string
 }
 
-export function ArtistsPageClient({ artists, featured }: Props) {
+export function ArtistsPageClient({ artists, featured, label, body, featuredLabel, featuredCta }: Props) {
   const [filter, setFilter] = useState('all')
   const [view, setView] = useState<'grid' | 'list'>('grid')
 
@@ -40,14 +44,15 @@ export function ArtistsPageClient({ artists, featured }: Props) {
       <section className={styles.header}>
         <div className={styles.headerInner}>
           <div>
-            <p className={`reveal ${styles.label}`}>所有藝術家</p>
+            <p className={`reveal ${styles.label}`}>{label}</p>
             <h1 className={`reveal ${styles.headerTitle}`}>
-              <span className={styles.inf}>∞</span><br />位藝術家
+              <span className={styles.inf}>{artists.length}</span><br />位藝術家
             </h1>
           </div>
           <p className={`reveal ${styles.headerBody}`}>
-            每一位都用數十年時間，<br />
-            在一條路上走到了別人看不見的深處。
+            {body.split('\n').map((line, i, arr) => (
+              <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
+            ))}
           </p>
         </div>
       </section>
@@ -66,7 +71,7 @@ export function ArtistsPageClient({ artists, featured }: Props) {
               />
             </div>
             <div className={styles.featuredInfo}>
-              <p className={`reveal ${styles.featuredLabel}`}>精選藝術家</p>
+              <p className={`reveal ${styles.featuredLabel}`}>{featuredLabel}</p>
               <h2 className={`reveal ${styles.featuredName}`}>{featured.name}</h2>
               {featured.nameEn && <p className={`reveal ${styles.featuredNameEn}`}>{featured.nameEn}</p>}
               <div className={`reveal ${styles.featuredTags}`}>
@@ -76,7 +81,7 @@ export function ArtistsPageClient({ artists, featured }: Props) {
                 <blockquote className={`reveal ${styles.featuredQuote}`}>「{featured.quote}」</blockquote>
               )}
               <Link href={`/artists/${featured.slug.current}`} className={`reveal ${styles.featuredCta}`}>
-                進入展館 →
+                {featuredCta}
               </Link>
             </div>
           </div>
@@ -123,8 +128,7 @@ export function ArtistsPageClient({ artists, featured }: Props) {
                 <Link
                   key={artist._id}
                   href={`/artists/${artist.slug.current}`}
-                  className={`reveal ${styles.card}`}
-                  style={{ transitionDelay: `${i * 50}ms` }}
+                  className={styles.card}
                 >
                   <div className={styles.cardImg}>
                     <Image src={imgUrl} alt={artist.name} fill
@@ -157,8 +161,7 @@ export function ArtistsPageClient({ artists, featured }: Props) {
               <Link
                 key={artist._id}
                 href={`/artists/${artist.slug.current}`}
-                className={`reveal ${styles.listRow}`}
-                style={{ transitionDelay: `${i * 40}ms` }}
+                className={styles.listRow}
               >
                 <span className={styles.listNum}>{String(artist.index ?? i + 1).padStart(2, '0')}</span>
                 <div className={styles.listPortrait}>

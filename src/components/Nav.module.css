@@ -1,7 +1,7 @@
-.nav {
+﻿.nav {
   position: fixed;
   top: 0; left: 0; right: 0;
-  z-index: 100;
+  z-index: 200;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -85,12 +85,111 @@
   color: var(--paper);
 }
 
+/* ── Hamburger button ── */
+.burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  z-index: 201;
+}
+
+.burger span {
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--mineral);
+  transition: transform 0.35s ease, opacity 0.25s ease, background 0.3s;
+  transform-origin: center;
+}
+
+.burgerOpen span:nth-child(1) { transform: translateY(7px) rotate(45deg); background: var(--paper); }
+.burgerOpen span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.burgerOpen span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); background: var(--paper); }
+
+/* ── Mobile full-screen overlay ── */
+.mobileMenu {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 199;
+  background: rgba(5, 5, 4, 0.97);
+  backdrop-filter: blur(16px);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.mobileMenuOpen {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.mobileLinks {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.mobileItem {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.mobileItemIn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mobileLinks a {
+  display: block;
+  font-family: var(--serif);
+  font-size: clamp(28px, 8vw, 42px);
+  font-weight: 200;
+  letter-spacing: 0.22em;
+  color: var(--mineral);
+  text-decoration: none;
+  padding: 0.8rem 1.5rem;
+  transition: color 0.3s;
+}
+
+.mobileLinks a:hover,
+.mobileActive {
+  color: var(--paper) !important;
+}
+
+.mobileApply {
+  font-size: 13px;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  border: 0.5px solid rgba(170, 166, 157, 0.3);
+  color: var(--mineral);
+  text-decoration: none;
+  padding: 0.85rem 2.4rem;
+  transition: border-color 0.35s, color 0.35s, opacity 0.4s ease, transform 0.4s ease;
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.mobileApply:hover {
+  border-color: var(--paper);
+  color: var(--paper);
+}
+
 @media (max-width: 900px) {
-  .nav {
-    padding: 1.25rem 1.5rem;
-  }
-  .links,
-  .apply {
-    display: none;
-  }
+  .nav { padding: 1.1rem 1.25rem; }
+  .links, .apply { display: none; }
+  .burger { display: flex; }
+  .mobileMenu { display: flex; }
 }

@@ -7,16 +7,27 @@ import styles from './PastExhibitions.module.css'
 interface Props {
   exhibitions: Exhibition[]
   upcoming: Exhibition[]
+  pastLabel: string
+  pastTitle: string
+  upcomingLabel: string
+  upcomingTitle: string
+  emptyMsg: string
 }
 
-export function PastExhibitions({ exhibitions, upcoming }: Props) {
+export function PastExhibitions({ exhibitions, upcoming, pastLabel, pastTitle, upcomingLabel, upcomingTitle, emptyMsg }: Props) {
+  if (!exhibitions.length && !upcoming.length) return (
+    <section style={{ padding: '6rem 4rem', textAlign: 'center' }}>
+      <p style={{ fontSize: '0.78rem', letterSpacing: '0.3em', color: 'var(--gold)', marginBottom: '1rem' }}>{pastLabel}</p>
+      <p style={{ fontSize: '1.1rem', color: '#6e6860', letterSpacing: '0.1em' }}>{emptyMsg}</p>
+    </section>
+  )
   return (
     <>
       {/* PAST GRID */}
       <section className={styles.past}>
         <div className={styles.head}>
-          <p className={`reveal ${styles.label}`}>過往策展</p>
-          <h2 className={`reveal ${styles.title}`}>歷屆展覽</h2>
+          <p className={`reveal ${styles.label}`}>{pastLabel}</p>
+          <h2 className={`reveal ${styles.title}`}>{pastTitle}</h2>
         </div>
         <div className={styles.grid}>
           {exhibitions.map((ex, i) => {
@@ -49,8 +60,8 @@ export function PastExhibitions({ exhibitions, upcoming }: Props) {
       {upcoming.length > 0 && (
         <section className={styles.upcoming}>
           <div className={styles.head}>
-            <p className={`reveal ${styles.label}`}>即將展出</p>
-            <h2 className={`reveal ${styles.title}`}>敬請期待</h2>
+            <p className={`reveal ${styles.label}`}>{upcomingLabel}</p>
+            <h2 className={`reveal ${styles.title}`}>{upcomingTitle}</h2>
           </div>
           <div className={styles.upcomingList}>
             {upcoming.map((ex) => (
@@ -60,7 +71,7 @@ export function PastExhibitions({ exhibitions, upcoming }: Props) {
                   <p className={styles.upTitle}>{ex.title}</p>
                   <p className={styles.upArtists}>{ex.artists?.map((a) => a.name).join('、')}</p>
                 </div>
-                <span className={styles.upTag}>即將展出</span>
+                <span className={styles.upTag}>{upcomingLabel}</span>
               </div>
             ))}
           </div>

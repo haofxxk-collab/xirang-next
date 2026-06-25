@@ -49,29 +49,39 @@ export function ArtistHero({ artist }: Props) {
             <p className={`reveal ${styles.nameEn}`}>{artist.nameEn}</p>
           )}
 
-          <div className={`reveal ${styles.tags}`}>
-            {artist.medium?.map((m) => (
-              <span key={m} className={styles.tag}>{m}</span>
-            ))}
-          </div>
+          {artist.medium && artist.medium.length > 0 && (
+            <div className={`reveal ${styles.tags}`}>
+              {artist.medium.map((m) => (
+                <span key={m} className={styles.tag}>{m}</span>
+              ))}
+            </div>
+          )}
 
           <div className={`reveal ${styles.metaGrid}`}>
-            <div className={styles.metaItem}>
-              <span className={styles.metaLabel}>創作資歷</span>
-              <span className={styles.metaVal}>{artist.yearsActive} 年</span>
-            </div>
-            <div className={styles.metaItem}>
-              <span className={styles.metaLabel}>出生年份</span>
-              <span className={styles.metaVal}>{artist.birthYear}</span>
-            </div>
-            <div className={styles.metaItem}>
-              <span className={styles.metaLabel}>所在地</span>
-              <span className={styles.metaVal}>{artist.location}</span>
-            </div>
-            <div className={styles.metaItem}>
-              <span className={styles.metaLabel}>典藏作品</span>
-              <span className={styles.metaVal}>{artist.works?.length ?? 0} 件</span>
-            </div>
+            {Number(artist.yearsActive) > 0 && (
+              <div className={styles.metaItem}>
+                <span className={styles.metaLabel}>創作資歷</span>
+                <span className={styles.metaVal}>{artist.yearsActive} 年</span>
+              </div>
+            )}
+            {artist.birthYear != null && (
+              <div className={styles.metaItem}>
+                <span className={styles.metaLabel}>出生年份</span>
+                <span className={styles.metaVal}>{artist.birthYear}</span>
+              </div>
+            )}
+            {artist.location && (
+              <div className={styles.metaItem}>
+                <span className={styles.metaLabel}>所在地</span>
+                <span className={styles.metaVal}>{artist.location}</span>
+              </div>
+            )}
+            {(artist.works?.length ?? 0) > 0 && (
+              <div className={styles.metaItem}>
+                <span className={styles.metaLabel}>典藏作品</span>
+                <span className={styles.metaVal}>{artist.works.length} 件</span>
+              </div>
+            )}
           </div>
 
           {artist.quote && (

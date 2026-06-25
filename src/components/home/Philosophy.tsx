@@ -1,29 +1,25 @@
 import styles from './Philosophy.module.css'
 
-const items = [
-  {
-    char: '時',
-    title: '時間是唯一的標準',
-    body: '息壤沒有點閱率排行，沒有粉絲數門檻。加入的唯一條件，是在一條路上走過足夠長的時間。',
-  },
-  {
-    char: '深',
-    title: '深度，不是廣度',
-    body: '我們不追求最多的藝術家，而是追求每一個展館都能呈現創作者最真實、最完整的面貌。',
-  },
-  {
-    char: '美',
-    title: '美，是對的事',
-    body: '藝術不是商品。息壤的每一個設計決定，都以「這樣呈現美嗎？」為第一判斷標準。',
-  },
-]
+interface Props {
+  label: string
+  title: string
+  card1Char: string; card1Title: string; card1Body: string
+  card2Char: string; card2Title: string; card2Body: string
+  card3Char: string; card3Title: string; card3Body: string
+}
 
-export function Philosophy() {
+export function Philosophy({ label, title, card1Char, card1Title, card1Body, card2Char, card2Title, card2Body, card3Char, card3Title, card3Body }: Props) {
+  const [titleLine1, titleLine2] = title.split('\n')
+  const items = [
+    { char: card1Char, title: card1Title, body: card1Body },
+    { char: card2Char, title: card2Title, body: card2Body },
+    { char: card3Char, title: card3Title, body: card3Body },
+  ]
   return (
     <section className={styles.section}>
       <div className={styles.head}>
-        <p className={`reveal ${styles.label}`}>展館哲學</p>
-        <h2 className={`reveal ${styles.title}`}>我們相信的<br />三件事。</h2>
+        <p className={`reveal ${styles.label}`}>{label}</p>
+        <h2 className={`reveal ${styles.title}`}>{titleLine1}<br />{titleLine2}</h2>
       </div>
       <div className={styles.grid}>
         {items.map((item) => (

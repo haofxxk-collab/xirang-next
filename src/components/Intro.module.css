@@ -1,4 +1,4 @@
-.intro {
+﻿.intro {
   position: fixed;
   inset: 0;
   z-index: 999;
@@ -19,6 +19,23 @@
   transform: scale(1.06);
 }
 
+/* ?? overlay: light at top-left, darken bottom ?? */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 8% 10%, rgba(255,210,120,0.18) 0%, transparent 70%),
+    linear-gradient(
+      to bottom,
+      rgba(8,8,7,0.05) 0%,
+      rgba(8,8,7,0.00) 35%,
+      rgba(8,8,7,0.30) 70%,
+      rgba(8,8,7,0.60) 100%
+    );
+  z-index: 1;
+  pointer-events: none;
+}
+
 .rain {
   position: absolute;
   inset: 0;
@@ -26,35 +43,82 @@
   pointer-events: none;
 }
 
-/* mist bands — use data-band attribute to avoid :global */
+/* ?? mist bands ?? */
 .mb {
   position: absolute;
   left: -30%;
   width: 160%;
   border-radius: 50%;
-  filter: blur(45px);
+  filter: blur(55px);
   opacity: 0;
   animation: bandDrift ease-in-out infinite alternate;
 }
 .mb1 {
-  height: 28vh; top: 30%;
-  background: radial-gradient(ellipse at center, rgba(230,228,220,0.22) 0%, transparent 65%);
+  height: 32vh; top: 28%;
+  background: radial-gradient(ellipse at center, rgba(230,228,220,0.32) 0%, transparent 65%);
   animation-duration: 14s;
 }
 .mb2 {
-  height: 22vh; top: 48%;
-  background: radial-gradient(ellipse at 40% center, rgba(215,212,204,0.18) 0%, transparent 60%);
+  height: 26vh; top: 46%;
+  background: radial-gradient(ellipse at 40% center, rgba(215,212,204,0.26) 0%, transparent 60%);
   animation-duration: 18s; animation-delay: -4s;
 }
 .mb3 {
-  height: 32vh; top: 18%;
-  background: radial-gradient(ellipse at 60% center, rgba(240,237,229,0.12) 0%, transparent 55%);
+  height: 36vh; top: 16%;
+  background: radial-gradient(ellipse at 60% center, rgba(240,237,229,0.18) 0%, transparent 55%);
   animation-duration: 22s; animation-delay: -8s;
 }
 .mb4 {
-  height: 20vh; top: 62%;
-  background: radial-gradient(ellipse at center, rgba(200,197,190,0.14) 0%, transparent 60%);
+  height: 24vh; top: 60%;
+  background: radial-gradient(ellipse at center, rgba(200,197,190,0.22) 0%, transparent 60%);
   animation-duration: 16s; animation-delay: -2s;
+}
+
+/* ?? bottom fog rising ?? */
+.fogBottom {
+  position: absolute;
+  bottom: 0;
+  left: -10%;
+  width: 120%;
+  height: 45vh;
+  background: linear-gradient(
+    to top,
+    rgba(220,217,210,0.38) 0%,
+    rgba(220,217,210,0.18) 35%,
+    transparent 100%
+  );
+  filter: blur(28px);
+  z-index: 2;
+  pointer-events: none;
+  animation: fogRise 20s ease-in-out infinite alternate;
+}
+
+@keyframes fogRise {
+  from { transform: translateY(0) scaleX(1); opacity: 0.7; }
+  to   { transform: translateY(-6%) scaleX(1.04); opacity: 1; }
+}
+
+/* ?? incense wisps ?? */
+.wisp {
+  position: absolute;
+  bottom: 0;
+  width: 1px;
+  border-radius: 50%;
+  filter: blur(8px);
+  background: rgba(230,225,215,0.55);
+  z-index: 2;
+  pointer-events: none;
+  animation: wispRise linear infinite;
+}
+.wisp1 { left: 38%; height: 38vh; animation-duration: 9s; animation-delay: 1s; }
+.wisp2 { left: 50%; height: 44vh; animation-duration: 12s; animation-delay: 3s; width: 2px; }
+.wisp3 { left: 62%; height: 32vh; animation-duration: 10s; animation-delay: 0s; }
+
+@keyframes wispRise {
+  0%   { opacity: 0; transform: translateY(0) scaleX(1); }
+  20%  { opacity: 0.6; }
+  60%  { opacity: 0.3; transform: translateY(-40vh) scaleX(3); }
+  100% { opacity: 0; transform: translateY(-60vh) scaleX(5); }
 }
 
 @keyframes bandDrift {
@@ -62,6 +126,7 @@
   to   { transform: translateX(6%) translateY(-2%) rotate(1deg); }
 }
 
+/* ?? content ?? */
 .content {
   position: relative;
   z-index: 3;
@@ -69,17 +134,39 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2.5rem;
+  gap: 2rem;
 }
 
-.seal {}
+/* ?? seal with glow ring ?? */
+.sealWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sealGlow {
+  position: absolute;
+  inset: -32px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(184,90,60,0.18) 0%, transparent 70%);
+  filter: blur(20px);
+  animation: glowPulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes glowPulse {
+  from { opacity: 0.6; transform: scale(0.96); }
+  to   { opacity: 1;   transform: scale(1.04); }
+}
 
 .sealImg {
   opacity: 0;
   transform: scale(0.92);
-  filter: drop-shadow(0 0 40px rgba(184, 147, 90, 0.2));
+  filter: drop-shadow(0 0 32px rgba(184, 90, 60, 0.35))
+          drop-shadow(0 0 80px rgba(184, 147, 90, 0.15));
 }
 
+/* ?? quote ?? */
 .quote {
   display: flex;
   flex-direction: column;
@@ -94,11 +181,13 @@
   color: var(--paper);
   letter-spacing: 0.16em;
   opacity: 0;
+  text-shadow: 0 2px 24px rgba(0,0,0,0.5);
 }
 
 .qLineEm {
   color: var(--mineral);
-  font-size: clamp(15px, 1.8vw, 24px);
+  font-size: clamp(14px, 1.6vw, 22px);
+  text-shadow: 0 2px 16px rgba(0,0,0,0.6);
 }
 
 .qDivider {
@@ -107,17 +196,102 @@
   background: rgba(184, 147, 90, 0.5);
   transform: scaleX(0);
   transform-origin: left;
-  margin: 1.5rem auto;
+  margin: 1.2rem auto;
 }
 
+/* ?? ?急??亙?? ?? */
 .qEnter {
-  font-size: 13px;
+  position: relative;
+  display: inline-block;
+  padding: 18px 52px;
+  font-size: 15px;
   letter-spacing: 0.52em;
-  text-transform: uppercase;
-  color: var(--mineral);
+  font-family: var(--serif);
+  font-weight: 300;
+  color: var(--paper);
   text-decoration: none;
   opacity: 0;
-  transition: color 0.3s;
+  transition: color 0.4s, letter-spacing 0.4s;
 }
 
-.qEnter:hover { color: var(--paper); }
+/* ????蝺??敺??賜??*/
+.qEnter::before,
+.qEnter::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+}
+
+/* 銝?+ 銝??拇帖蝺?*/
+.qEnter::before {
+  top: 0; left: 0;
+  width: 0; height: 1px;
+  background: rgba(184, 147, 90, 0.7);
+  box-shadow: 0 0 8px rgba(184,147,90,0.3);
+  transition: width 0.8s ease 0.2s;
+}
+.qEnter::after {
+  bottom: 0; right: 0;
+  width: 0; height: 1px;
+  background: rgba(184, 147, 90, 0.7);
+  box-shadow: 0 0 8px rgba(184,147,90,0.3);
+  transition: width 0.8s ease 0.6s;
+}
+
+/* 撌?+ ???拍蝺???span ?? */
+.qEnterL,
+.qEnterR {
+  position: absolute;
+  pointer-events: none;
+}
+.qEnterL {
+  top: 0; left: 0;
+  width: 1px; height: 0;
+  background: rgba(184, 147, 90, 0.7);
+  box-shadow: 0 0 8px rgba(184,147,90,0.3);
+  transition: height 0.6s ease 1.0s;
+}
+.qEnterR {
+  bottom: 0; right: 0;
+  width: 1px; height: 0;
+  background: rgba(184, 147, 90, 0.7);
+  box-shadow: 0 0 8px rgba(184,147,90,0.3);
+  transition: height 0.6s ease 0.4s;
+}
+
+/* ?急?撅????data-drawn attribute 閫貊嚗?*/
+.qEnter[data-drawn]::before { width: 100%; }
+.qEnter[data-drawn]::after  { width: 100%; }
+
+.qEnter:hover {
+  color: rgba(184, 147, 90, 0.9);
+  letter-spacing: 0.62em;
+}
+.qEnter:hover::before,
+.qEnter:hover::after {
+  box-shadow: 0 0 16px rgba(184,147,90,0.5);
+}
+
+
+/* ── 手機響應式 ── */
+@media (max-width: 600px) {
+  .mb {
+    left: -20%;
+    width: 140%;
+  }
+  .fogBottom {
+    left: -5%;
+    width: 110%;
+  }
+  .qEnter {
+    padding: 14px 32px;
+    font-size: 14px;
+    letter-spacing: 0.38em;
+  }
+  .qLine {
+    font-size: clamp(18px, 5.5vw, 30px);
+  }
+  .qLineEm {
+    font-size: clamp(12px, 3.5vw, 18px);
+  }
+}

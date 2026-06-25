@@ -1,19 +1,34 @@
-import type { Metadata } from 'next'
-import { getAllArtists, getFeaturedArtist } from '@/lib/queries'
+﻿import type { Metadata } from 'next'
+import { getAllArtists, getFeaturedArtist, getSiteSettings } from '@/lib/queries'
 import { ArtistsPageClient } from './ArtistsPageClient'
 
-export const metadata: Metadata = {
-  title: '藝術家',
-  description: '探索息壤館內所有藝術家，每一位都是一段值得被看見的故事。',
+export const revalidate = false
+
+export async function generateMetadata(): Promise<Metadata> {
+  const s = await getSiteSettings()
+  return {
+    title: s.seoArtistsTitle,
+    description: s.seoArtistsDescription,
+    openGraph: { title: s.seoArtistsTitle, description: s.seoArtistsDescription },
+    twitter: { title: s.seoArtistsTitle, description: s.seoArtistsDescription },
+  }
 }
 
-export const revalidate = 3600
-
 export default async function ArtistsPage() {
-  const [artists, featured] = await Promise.all([
+  const [artists, featured, settings] = await Promise.all([
     getAllArtists(),
     getFeaturedArtist(),
+    getSiteSettings(),
   ])
 
-  return <ArtistsPageClient artists={artists} featured={featured} />
+  return (
+    <ArtistsPageClient
+      artists={artists}
+      featured={featured}
+      label={settings.artistsPageLabel}
+      body={settings.artistsPageBody}
+      featuredLabel={settings.artistsFeaturedLabel}
+      featuredCta={settings.artistsFeaturedCta}
+    />
+  )
 }

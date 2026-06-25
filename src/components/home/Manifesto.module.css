@@ -1,4 +1,4 @@
-.manifesto {
+﻿.manifesto {
   background: var(--ink);
   padding: 12rem 4rem;
   text-align: center;
@@ -29,7 +29,8 @@
   transform: translateY(0);
 }
 
-.dim { color: rgba(170, 166, 157, 0.2); }
+/* 使用後台可調整的 --dim-opacity 變數 */
+.dim { color: rgba(170, 166, 157, var(--dim-opacity, 0.5)); }
 .accent { color: var(--gold); }
 
 .divider {
@@ -48,4 +49,10 @@
 
 @media (max-width: 900px) {
   .manifesto { padding: 7rem 1.5rem; }
+  .line { font-size: clamp(20px, 5.5vw, 36px); line-height: 2.2; }
+}
+
+@media (max-width: 480px) {
+  .manifesto { padding: 5rem 1.25rem; }
+  .line { font-size: clamp(18px, 6vw, 28px); }
 }

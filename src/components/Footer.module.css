@@ -42,6 +42,13 @@
   color: var(--paper);
 }
 
+.tagline {
+  font-size: 0.82rem;
+  color: rgba(170,166,157,0.45);
+  letter-spacing: 0.18em;
+  font-family: var(--serif);
+}
+
 .copy {
   font-size: 12px;
   color: rgba(110, 104, 96, 0.3);

@@ -48,7 +48,11 @@ export function WorkViewer({ work }: Props) {
           </nav>
           <div className={styles.titleBlock}>
             <h1 className={styles.title}>《{work.title}》</h1>
-            <p className={styles.meta}>{work.year} · {work.medium}</p>
+            {(work.year || work.medium) && (
+              <p className={styles.meta}>
+                {[work.year, work.medium].filter(Boolean).join(' · ')}
+              </p>
+            )}
           </div>
           <button className={styles.zoomBtn} onClick={() => setModalOpen(true)}>
             ⊕ 放大檢視

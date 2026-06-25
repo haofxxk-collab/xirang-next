@@ -36,6 +36,14 @@ export interface Artwork {
   images: SanityImage[]
   artist: Pick<Artist, '_id' | 'name' | 'slug' | 'portrait'>
   relatedWorks?: Artwork[]
+  workProcessLabel?: string
+  workProcessTitle?: string
+  workProcess1Title?: string
+  workProcess1Body?: string
+  workProcess2Title?: string
+  workProcess2Body?: string
+  workProcess3Title?: string
+  workProcess3Body?: string
 }
 
 export interface Exhibition {
@@ -51,7 +59,7 @@ export interface Exhibition {
   description: string
   curatorNote: string
   artists: Pick<Artist, '_id' | 'name' | 'slug' | 'portrait' | 'medium'>[]
-  works: Pick<Artwork, '_id' | 'title' | 'images'>[]
+  works: Pick<Artwork, '_id' | 'title' | 'images' | 'slug' | 'year' | 'medium'>[]
 }
 
 export interface TimelineEvent {

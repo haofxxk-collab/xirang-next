@@ -1,38 +1,53 @@
 import styles from './Hero.module.css'
 
-export function Hero() {
+interface Props {
+  artistCount: number
+  artworkCount: number
+  label: string
+  title: string
+  body: string
+  stat1Label: string
+  stat2Label: string
+  stat3Val: string
+  stat3Label: string
+}
+
+export function Hero({ artistCount, artworkCount, label, title, body, stat1Label, stat2Label, stat3Val, stat3Label }: Props) {
+  const titleLines = title.split('\n')
+  const bodyLines = body.split('\n')
+
   return (
     <section className={styles.hero}>
       <div className={styles.inner}>
         <div className={styles.left}>
-          <p className={`reveal ${styles.label}`}>數位展館</p>
+          <p className={`reveal ${styles.label}`}>{label}</p>
           <h1 className={`reveal ${styles.title}`}>
-            深耕數十年<br />
-            的創作者，<br />
-            <em>值得一座展館。</em>
+            {titleLines.slice(0, -1).map((line, i) => (
+              <span key={i}>{line}<br /></span>
+            ))}
+            <em>{titleLines[titleLines.length - 1]}</em>
           </h1>
         </div>
         <div className={styles.right}>
           <p className={`reveal ${styles.body}`}>
-            息壤是亞洲資深藝術家的數位家園。<br />
-            我們相信，時間是最好的策展人。<br />
-            每一位願意在一條路上走三十年、<br />
-            五十年的藝術家，都值得被好好看見。
+            {bodyLines.map((line, i) => (
+              <span key={i}>{line}{i < bodyLines.length - 1 && <br />}</span>
+            ))}
           </p>
           <div className={`reveal ${styles.stats}`}>
             <div className={styles.stat}>
-              <span className={styles.statVal}>∞</span>
-              <span className={styles.statLabel}>典藏作品</span>
+              <span className={styles.statVal}>{artworkCount}</span>
+              <span className={styles.statLabel}>{stat1Label}</span>
             </div>
             <div className={styles.statDiv} />
             <div className={styles.stat}>
-              <span className={styles.statVal}>∞</span>
-              <span className={styles.statLabel}>藝術家展館</span>
+              <span className={styles.statVal}>{artistCount}</span>
+              <span className={styles.statLabel}>{stat2Label}</span>
             </div>
             <div className={styles.statDiv} />
             <div className={styles.stat}>
-              <span className={styles.statVal}>20+</span>
-              <span className={styles.statLabel}>創作媒材</span>
+              <span className={styles.statVal}>{stat3Val}</span>
+              <span className={styles.statLabel}>{stat3Label}</span>
             </div>
           </div>
         </div>

@@ -4,10 +4,25 @@ import type { Exhibition } from '@/types'
 import { urlForSize } from '@/lib/sanity'
 import styles from './CurrentExhibition.module.css'
 
-interface Props { exhibition: Exhibition | null }
+interface Props {
+  exhibition: Exhibition | null
+  currentLabel: string
+  artistsLabel: string
+  cta: string
+  emptyTitle: string
+  emptyBody: string
+}
 
-export function CurrentExhibition({ exhibition }: Props) {
-  if (!exhibition) return null
+export function CurrentExhibition({ exhibition, currentLabel, artistsLabel, cta, emptyTitle, emptyBody }: Props) {
+  if (!exhibition) return (
+    <section className={styles.empty}>
+      <div className={styles.emptyInner}>
+        <p className={styles.emptyLabel}>{currentLabel}</p>
+        <h2 className={styles.emptyTitle}>{emptyTitle}</h2>
+        <p className={styles.emptyBody}>{emptyBody.replace(/\n/g, ' ')}</p>
+      </div>
+    </section>
+  )
 
   const coverUrl = exhibition.coverImage
     ? urlForSize(exhibition.coverImage, 1600, 900)
@@ -24,7 +39,7 @@ export function CurrentExhibition({ exhibition }: Props) {
 
       <div className={styles.content}>
         <div className={styles.meta}>
-          <span className={styles.tag}>當期策展</span>
+          <span className={styles.tag}>{currentLabel}</span>
           <span className={styles.date}>{dateStr}</span>
         </div>
         <h2 className={`reveal ${styles.title}`}>{exhibition.title}</h2>
@@ -33,7 +48,7 @@ export function CurrentExhibition({ exhibition }: Props) {
 
         {exhibition.artists?.length > 0 && (
           <div className={`reveal ${styles.artists}`}>
-            <p className={styles.artistsLabel}>參展藝術家</p>
+            <p className={styles.artistsLabel}>{artistsLabel}</p>
             <div className={styles.artistsList}>
               {exhibition.artists.map((a) => (
                 <Link key={a._id} href={`/artists/${a.slug.current}`} className={styles.artistLink}>
@@ -49,7 +64,7 @@ export function CurrentExhibition({ exhibition }: Props) {
         )}
 
         <Link href={`/exhibitions/${exhibition.slug.current}`} className={`reveal ${styles.cta}`}>
-          進入展覽 →
+          {cta}
         </Link>
       </div>
     </section>

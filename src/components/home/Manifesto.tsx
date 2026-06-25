@@ -3,16 +3,21 @@
 import { useEffect, useRef } from 'react'
 import styles from './Manifesto.module.css'
 
-const lines = [
-  { text: '真正的創作，', dim: true },
-  { text: '不需要爆紅。', dim: false },
-  { text: '它只需要', dim: true },
-  { text: '被對的人看見。', dim: false },
-  { text: '慢，', dim: true },
-  { text: '才是最深的抵達。', dim: false, accent: true },
-]
+interface Props {
+  line1: string; line2: string; line3: string
+  line4: string; line5: string; line6: string
+  sub: string
+}
 
-export function Manifesto() {
+export function Manifesto({ line1, line2, line3, line4, line5, line6, sub }: Props) {
+  const lines = [
+    { text: line1, dim: true },
+    { text: line2, dim: false },
+    { text: line3, dim: true },
+    { text: line4, dim: false },
+    { text: line5, dim: true },
+    { text: line6, dim: false, accent: true },
+  ]
   const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
@@ -50,9 +55,7 @@ export function Manifesto() {
         ))}
       </div>
       <div className={`${styles.divider} reveal`} />
-      <p className={`${styles.sub} reveal`}>
-        息壤，亞洲資深藝術家的數位展館
-      </p>
+      <p className={`${styles.sub} reveal`}>{sub}</p>
     </section>
   )
 }

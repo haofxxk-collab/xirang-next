@@ -51,7 +51,7 @@ export function ManifestoWall() {
         ))}
       </div>
       <div className={styles.seal}>
-        <Image src="/logo.webp" alt="息壤" width={100} height={100} />
+        <Image src="/logo.png" alt="息壤" width={120} height={176} />
       </div>
     </section>
   )

@@ -1,17 +1,28 @@
 import styles from './WorkProcess.module.css'
 
-const steps = [
-  { num: '一', title: '素材選取', body: '每一件作品從原料開始即是創作的一部分。對媒材的感受，往往是整個創作過程的起點。' },
-  { num: '二', title: '意象生成', body: '在動筆或動手之前，藝術家通常需要一段靜默的醞釀期，讓內在的圖像逐漸清晰成形。' },
-  { num: '三', title: '完成定稿', body: '創作的完成並非終點，而是作品開始與觀者對話的起點。每一次被看見，都是一次新的詮釋。' },
-]
+interface Props {
+  label: string
+  title: string
+  step1Title: string
+  step1Body: string
+  step2Title: string
+  step2Body: string
+  step3Title: string
+  step3Body: string
+}
 
-export function WorkProcess() {
+export function WorkProcess({ label, title, step1Title, step1Body, step2Title, step2Body, step3Title, step3Body }: Props) {
+  const steps = [
+    { num: '一', title: step1Title, body: step1Body },
+    { num: '二', title: step2Title, body: step2Body },
+    { num: '三', title: step3Title, body: step3Body },
+  ]
+
   return (
     <section className={styles.section}>
       <div className={styles.head}>
-        <p className={`reveal ${styles.label}`}>創作過程</p>
-        <h2 className={`reveal ${styles.title}`}>從靈感到完成</h2>
+        <p className={`reveal ${styles.label}`}>{label}</p>
+        <h2 className={`reveal ${styles.title}`}>{title}</h2>
       </div>
       <div className={styles.steps}>
         {steps.map((s) => (

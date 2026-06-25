@@ -1,17 +1,24 @@
-import Link from 'next/link'
+﻿import Link from 'next/link'
 import Image from 'next/image'
 import type { Artwork } from '@/types'
 import { urlForSize } from '@/lib/sanity'
 import styles from './WorksScroll.module.css'
 
-interface Props { artworks: Artwork[] }
+interface Props {
+  artworks: Artwork[]
+  label: string
+  title: string
+  more: string
+}
 
-export function WorksScroll({ artworks }: Props) {
+export function WorksScroll({ artworks, label, title, more }: Props) {
+  const [titleLine1, titleLine2] = title.split('\n')
+  if (!artworks.length) return null
   return (
     <section className={styles.section}>
       <div className={styles.head}>
-        <p className={`reveal ${styles.label}`}>典藏精選</p>
-        <h2 className={`reveal ${styles.title}`}>每件作品，<br />都有一段故事。</h2>
+        <p className={`reveal ${styles.label}`}>{label}</p>
+        <h2 className={`reveal ${styles.title}`}>{titleLine1}<br />{titleLine2}</h2>
       </div>
 
       <div className={styles.grid}>
@@ -39,7 +46,7 @@ export function WorksScroll({ artworks }: Props) {
               </div>
               <div className={styles.info}>
                 <div>
-                  <p className={styles.artist}>{work.artist.name}</p>
+                  <p className={styles.artist}>{work.artist?.name ?? ''}</p>
                   <h3 className={styles.workTitle}>《{work.title}》</h3>
                   <p className={styles.meta}>{work.year} · {work.medium}</p>
                 </div>
@@ -53,7 +60,7 @@ export function WorksScroll({ artworks }: Props) {
       </div>
 
       <div className={`reveal ${styles.foot}`}>
-        <Link href="/works" className={styles.moreCta}>瀏覽所有典藏 →</Link>
+        <Link href="/works" className={styles.moreCta}>{more}</Link>
       </div>
     </section>
   )
