@@ -2,6 +2,7 @@
 import { notFound } from 'next/navigation'
 import { getArtistBySlug, getAllArtists, getSiteSettings } from '@/lib/queries'
 import { urlForSize } from '@/lib/sanity'
+import { ArtistIntro } from '@/components/artist/ArtistIntro'
 import { ArtistHero } from '@/components/artist/ArtistHero'
 import { ArtistStatement } from '@/components/artist/ArtistStatement'
 import { ArtistBio } from '@/components/artist/ArtistBio'
@@ -39,6 +40,7 @@ export default async function ArtistPage({ params }: Props) {
 
   return (
     <>
+      <ArtistIntro name={artist.name} nameEn={artist.nameEn} />
       <ArtistHero artist={artist} />
       <ArtistStatement artist={artist} />
       <ArtistBio artist={artist} />
