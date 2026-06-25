@@ -18,14 +18,14 @@ export function WorkDetail({ work }: Props) {
         {/* specs */}
         <div className={styles.specs}>
           <div className={styles.specGrid}>
-            {[
+            {([
               ['作品名稱', `《${work.title}》`],
               work.year ? ['創作年份', String(work.year)] : null,
               work.medium ? ['媒材技法', work.medium] : null,
               work.dimensions ? ['作品尺寸', work.dimensions] : null,
               work.series ? ['系列', work.series] : null,
               ['收藏狀態', work.status === 'available' ? '開放收藏' : work.status === 'inquire' ? '洽詢收藏' : '僅展覽'],
-            ].filter(Boolean).map(([label, value]) => (
+            ] as ([string, string] | null)[]).filter((x): x is [string, string] => x !== null).map(([label, value]) => (
               <div key={label} className={styles.specItem}>
                 <span className={styles.specLabel}>{label}</span>
                 <span className={styles.specVal}>{value}</span>
